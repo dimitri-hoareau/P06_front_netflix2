@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carousel.css" />
+    <link rel="stylesheet" href="styles.scss" />
+    <title>NetFlix2</title>
+</head>
+<body>
+    <header class="banner">
+        <div class="banner__title">
+            <h1>JustStreamit</h1>
+        </div>
+        <nav class="banner__nav">
+            <ul class="banner__list">
+                <li class="banner__list_element banner__list_element--active">
+                    Accueil
+                </li>
+                <li class="banner__nav__list__element">
+                    Catégories
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <main>
+        <section class="best_movie">
+            <div class="best_movie__bloc">
+                <h2 class="best_movie__title">
+                    Titre
+                </h2>
+                <button class="best_movie__button">
+                    Play
+                </button>
+            </div>
+        </section>
+    
+        <section>
+            
+
+<h1>Films les mieux notés</h1>
+
+<section class="carousel" aria-label="Gallery">
+    <div>
+        <button onclick="navigatePrevious()">
+            previous
+        </button>
+
+        <button onclick="navigateNext()">
+          next
+      </button>
+    </div>
+  <ol class="carousel__viewport">
+
+    <li id="carousel__slide0"
+        tabindex="0"
+        class="carousel__slide"
+        data-active="active">
+      <div class="carousel__snapper"></div>
+        <a href="#carousel__slide3"
+           class="carousel__prev">Go to last slide</a>
+        <a href="#carousel__slide1"
+           class="carousel__next">Go to next slide</a>
+      <!-- </div> -->
+    </li>
+    <li id="carousel__slide1"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide0"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide2"
+         class="carousel__next">Go to next slide</a>
+    </li>
+    <li id="carousel__slide2"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide1"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide3"
+         class="carousel__next">Go to next slide</a>
+    </li>
+    <li id="carousel__slide3"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper"></div>
+      <a href="#carousel__slide2"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide0"
+         class="carousel__next">Go to first slide</a>
+    </li>
+  </ol>
+  <aside class="carousel__navigation">
+    <ol class="carousel__navigation-list">
+      <li id="carousel__navigation-item_1" class="carousel__navigation-item" onclick="navigate(1)">
+        <a href="#carousel__slide0"
+           class="carousel__navigation-button">Go to slide 1</a>
+      </li>
+      <li id="carousel__navigation-item_2" class="carousel__navigation-item" onclick="navigate(2)">
+        <a href="#carousel__slide1"
+           class="carousel__navigation-button">Go to slide 2</a>
+      </li>
+      <li id="carousel__navigation-item_3" class="carousel__navigation-item" onclick="navigate(3)">
+        <a href="#carousel__slide2"
+           class="carousel__navigation-button">Go to slide 3</a>
+      </li>
+      <li id="carousel__navigation-item_4" class="carousel__navigation-item" onclick="navigate(4)">
+        <a href="#carousel__slide3"
+           class="carousel__navigation-button">Go to slide 4</a>
+      </li>
+    </ol>
+  </aside>
+</section>
+        </section>
+
+
+
+<script>
+    function navigate(index) {
+        // ou passe l'id en parametre
+        let test = document.getElementById("carousel__navigation-item_" + index)
+        // donner une classe active à test
+        // meme methode qu'en dessous, , chercher tous les elements, trouver celui qui a dataactive active, retirer et donner a l'autre
+        // ajiuter classe active à l'element du carousel aussi + retirer pour les autres
+        console.log(test)
+    }
+
+
+    function navigateNext() {
+        let listElement = document.getElementsByClassName('carousel__slide')
+        for (let i = 0; i < listElement.length; i++) {
+            if (listElement[i].getAttribute("data-active") === "active") {
+                listElement[i + 1].setAttribute("data-active", "active")
+                listElement[i].removeAttribute("data-active")
+                window.location.href='#carousel__slide' + (i + 1)
+                // donner aussi la classe active aux bullets points
+                break;
+            }
+        } 
+    }
+
+    function navigatePrevious() {
+        let listElement = document.getElementsByClassName('carousel__slide')
+        for (let i = 0; i < listElement.length; i++) {
+            if (listElement[i].getAttribute("data-active") === "active") {
+                listElement[i - 1].setAttribute("data-active", "active")
+                listElement[i].removeAttribute("data-active")
+                window.location.href='#carousel__slide' + (i - 1)
+                // donner aussi la classe active aux bullets points
+                break;
+            }
+        } 
+    }
+
+</script>
+ <!-- https://css-tricks.com/css-only-carousel/ -->
+ <!-- boucle pour les sections ou en dur ? -->
+<!-- remplace ahref par on click => href + attribut active + attribut actif pour les points -->
+ <!-- detecter sur quelle slide on se trouve  récupérer counter incrment ? -->
+ <!-- javascript documentgetelementbyId caroussel_slide_numebr change href -->
+
+
+ <!-- 2 boutton en dehors du carousel
+de base , carousel active c'est 1
+
+au click :
+faire un select by class = cherche ou il y a attribut data-active = active
+ajouter un href vers actif + 1
+puis ajout attribut active vers actif + 1 et enlever pour l'autre -->

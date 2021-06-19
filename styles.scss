@@ -1,0 +1,25 @@
+.banner{
+    display: flex;
+    background-color: #80d3fa;
+    banner__title {
+        width: 50%;
+    }
+    banner__list{
+        display: flex;
+        list-style: none;
+        justify-content: flex-start;
+    }
+    banner__list_element{
+        margin-right: 1em;
+        banner__list__element--active{
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+.best_movie {
+    background-color: brown;
+}
