@@ -58,56 +58,35 @@
         tabindex="0"
         class="carousel__slide"
         data-active="active">
-      <div class="carousel__snapper"></div>
-        <a href="#carousel__slide3"
-           class="carousel__prev">Go to last slide</a>
-        <a href="#carousel__slide1"
-           class="carousel__next">Go to next slide</a>
-      <!-- </div> -->
     </li>
     <li id="carousel__slide1"
         tabindex="0"
         class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide0"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide2"
-         class="carousel__next">Go to next slide</a>
     </li>
     <li id="carousel__slide2"
         tabindex="0"
         class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
     </li>
     <li id="carousel__slide3"
         tabindex="0"
         class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide0"
-         class="carousel__next">Go to first slide</a>
     </li>
   </ol>
   <aside class="carousel__navigation">
     <ol class="carousel__navigation-list">
-      <li id="carousel__navigation-item_1" class="carousel__navigation-item" onclick="navigate(1)">
+      <li id="carousel__navigation-item_0" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0)">
         <a href="#carousel__slide0"
            class="carousel__navigation-button">Go to slide 1</a>
       </li>
-      <li id="carousel__navigation-item_2" class="carousel__navigation-item" onclick="navigate(2)">
+      <li id="carousel__navigation-item_1" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1)">
         <a href="#carousel__slide1"
            class="carousel__navigation-button">Go to slide 2</a>
       </li>
-      <li id="carousel__navigation-item_3" class="carousel__navigation-item" onclick="navigate(3)">
+      <li id="carousel__navigation-item_2" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_2', 2)">
         <a href="#carousel__slide2"
            class="carousel__navigation-button">Go to slide 3</a>
       </li>
-      <li id="carousel__navigation-item_4" class="carousel__navigation-item" onclick="navigate(4)">
+      <li id="carousel__navigation-item_3" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_3', 3)">
         <a href="#carousel__slide3"
            class="carousel__navigation-button">Go to slide 4</a>
       </li>
@@ -119,27 +98,46 @@
 
 
 <script>
-    function navigate(index) {
-        // ou passe l'id en parametre
-        let test = document.getElementById("carousel__navigation-item_" + index)
-        // donner une classe active à test
-        // meme methode qu'en dessous, , chercher tous les elements, trouver celui qui a dataactive active, retirer et donner a l'autre
-        // ajiuter classe active à l'element du carousel aussi + retirer pour les autres
-        console.log(test)
+    function navigate(id, index) {
+        let listElement = document.getElementsByClassName('carousel__navigation-item')
+        for (let i = 0; i < listElement.length; i++) {
+            if (listElement[i].getAttribute("data-active") === "active") {
+                if (listElement[i].getAttribute("id") === id) {
+                    break;
+                } else {
+                    listElement[i].removeAttribute("data-active")
+                    document.getElementById(id).setAttribute("data-active", "active")
+                    for (let i = 0; i < document.getElementsByClassName('carousel__slide').length; i++) {
+                        if (document.getElementsByClassName('carousel__slide')[i].getAttribute("data-active") === "active") {
+                            document.getElementsByClassName('carousel__slide')[i].removeAttribute("data-active")
+                        }
+                    }
+                    document.getElementById('carousel__slide' + index).setAttribute("data-active", "active")
+                    window.location.href='#carousel__slide' + index
+                    break;
+                }
+
+            }
+        }
     }
+
 
 
     function navigateNext() {
         let listElement = document.getElementsByClassName('carousel__slide')
+
+
         for (let i = 0; i < listElement.length; i++) {
             if (listElement[i].getAttribute("data-active") === "active") {
                 listElement[i + 1].setAttribute("data-active", "active")
                 listElement[i].removeAttribute("data-active")
+                document.getElementById('carousel__navigation-item_' + i).removeAttribute("data-active")
+                document.getElementById('carousel__navigation-item_' + (i + 1)).setAttribute("data-active", "active")
                 window.location.href='#carousel__slide' + (i + 1)
-                // donner aussi la classe active aux bullets points
+
                 break;
             }
-        } 
+        }
     }
 
     function navigatePrevious() {
@@ -148,8 +146,10 @@
             if (listElement[i].getAttribute("data-active") === "active") {
                 listElement[i - 1].setAttribute("data-active", "active")
                 listElement[i].removeAttribute("data-active")
+                document.getElementById('carousel__navigation-item_' + i).removeAttribute("data-active")
+                document.getElementById('carousel__navigation-item_' + (i - 1)).setAttribute("data-active", "active")
                 window.location.href='#carousel__slide' + (i - 1)
-                // donner aussi la classe active aux bullets points
+                
                 break;
             }
         } 
@@ -169,4 +169,6 @@ de base , carousel active c'est 1
 au click :
 faire un select by class = cherche ou il y a attribut data-active = active
 ajouter un href vers actif + 1
-puis ajout attribut active vers actif + 1 et enlever pour l'autre -->
+puis ajout attribut active vers actif + 1 et enlever pour l'autre 
+https://developer.mozilla.org/fr/docs/Web/CSS/Attribute_selectors  ))> pir le css bullets points
+-->
