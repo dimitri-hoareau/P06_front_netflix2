@@ -71,7 +71,7 @@
   
   .carousel {
     position: relative;
-    padding-top: 75%;
+    /* padding-top: 75%; */
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
   }
@@ -96,6 +96,8 @@
     width: 100%;
     background-color: #f99;
     counter-increment: item;
+    display: flex;
+    justify-content: space-evenly;
   }
   
   .carousel__slide:nth-child(even) {
@@ -136,9 +138,10 @@
   .carousel__navigation {
     position: absolute;
     right: 0;
-    bottom: 280px;
+
     left: 0;
     text-align: center;
+    top: 340px;
   }
   
   .carousel__navigation-list,
@@ -186,3 +189,13 @@
     width: 2rem;
     height: 2rem;
   }
+
+  .button__container {
+    z-index: 10;
+    position: absolute;
+}
+  
+.caroussel__slide__movie {
+  width: 182px;
+  height: 268px;
+}
