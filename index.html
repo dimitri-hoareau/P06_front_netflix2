@@ -58,20 +58,8 @@
         tabindex="0"
         class="carousel__slide"
         data-active="active">
-        <!-- <p>1</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p> -->
     </li>
     <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-    </li>
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-    </li>
-    <li id="carousel__slide3"
         tabindex="0"
         class="carousel__slide">
     </li>
@@ -85,14 +73,6 @@
       <li id="carousel__navigation-item_1" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1)">
         <a href="#carousel__slide1"
            class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li id="carousel__navigation-item_2" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_2', 2)">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-      <li id="carousel__navigation-item_3" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_3', 3)">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 4</a>
       </li>
     </ol>
   </aside>
@@ -166,22 +146,36 @@ let actionValues = []
 
 function getAllMovie (value) {
     actionValues.push(value)
-    console.log(actionValues)
-}
-
-function createActionCarousel (value, index) {
-    for (movie of value.results) {
-        let film = document.createElement("div")
-        film.style.backgroundImage = "url(" + movie.image_url + ")"
-        film.classList.add("caroussel__slide__movie")
-        let filmTitle = document.createElement("h3") 
-        filmTitle.textContent = movie.title
-        film.appendChild(filmTitle)
-        let parent = document.getElementById("carousel__slide0")
-        parent.appendChild(film)
-    
+    if (actionValues.length === 2) {
+        let listOfAllMovies = actionValues[0].results.concat(actionValues[1].results)
+        listOfAllMovies.splice(6,3)
+        createActionCarousel(listOfAllMovies)
     }
 }
+
+function createActionCarousel (listOfAllMovies) {
+
+    function createCarouselList (listOfAllMovies, index) {
+        let film = document.createElement("div")
+            film.style.backgroundImage = "url(" + listOfAllMovies.image_url + ")"
+            film.classList.add("caroussel__slide__movie")
+            let filmTitle = document.createElement("h3") 
+            filmTitle.textContent = listOfAllMovies.title
+            film.appendChild(filmTitle)
+            let parent = document.getElementById("carousel__slide" + index)
+            parent.appendChild(film)
+    }
+        for (let i = 0; i <7; i++){
+            if (i < 4) {
+                createCarouselList(listOfAllMovies[i], 0)
+            } else {
+                createCarouselList(listOfAllMovies[i], 1)
+            }
+
+        }
+
+    }
+
 
 
 function fetchMultiplePages () {
@@ -194,7 +188,6 @@ function fetchMultiplePages () {
         }
     })
     .then(function(value) {
-        createActionCarousel(value, i);
         getAllMovie(value)
 
     })
@@ -212,5 +205,4 @@ fetchMultiplePages()
 
 </script>
 
-<!-- api plusieurs page, excercice ou normal ? -->
-<!-- then, async await ? -->
+ <!-- vérifier ordre !!! -->
