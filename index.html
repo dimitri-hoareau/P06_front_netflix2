@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="carousel.css" />
     <link rel="stylesheet" href="styles.scss" />
+    <link rel="stylesheet" href="modal.css" />
     <script src="carousel.js" ></script>
     <script src="movies.js" ></script>
+
     <title>NetFlix2</title>
 </head>
+
 <body>
+
+
+ </div> 
     <header class="banner">
         <div class="banner__title">
             <h1>JustStreamit</h1>
@@ -122,11 +128,88 @@
     </aside>
     </section>
 
-    
 </section>
+
 
 
  <!-- vérifier ordre un peu random parfois !!! console.log du tableau final des films -->
  <!-- vire le counter increment -->
  <!-- corriger bouton previous previous quand il n'y a rien avant -->
  <!-- type mot autorisé js ? -->
+ <!-- fichier js externe modal ?? -->
+ <!-- regex pour le fetch de la modal -->
+
+<script>
+//create modal content
+function buildModal (movieTitle) {
+    console.log(movieTitle)
+    fetch("http://localhost:8000/api/v1/titles/?title=Miss+Jerry")
+
+
+    .then(function(res) {
+        if (res.ok) {
+        return res.json();
+
+        }
+    })
+    .then(function(value) {
+        // console.log(value)
+
+    })
+
+    .catch(function(err) {
+    console.log(err)
+    });
+}
+
+
+
+
+//create the modal 
+let modal = document.createElement("div")
+modal.id = "myModal"
+modal.classList.add("modal")
+document.querySelector('body').appendChild(modal);
+
+let modalContent = document.createElement("div")
+modalContent.classList.add("modal-content")
+modal.appendChild(modalContent)
+
+let span = document.createElement("span")
+span.classList.add("close")
+span.textContent = "x"
+modalContent.appendChild(span)
+
+let title = document.createElement("p")
+title.textContent = "Some text in modal !"
+modalContent.appendChild(title)
+
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// When the user clicks on the button, open the modal
+// function openModal (filmTitle) {
+//     console.log(filmTitle)
+function openModal (movieTitle) {
+
+
+    buildModal(movieTitle)
+modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+} 
+
+
+
+</script>

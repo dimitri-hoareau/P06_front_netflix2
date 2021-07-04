@@ -13,24 +13,36 @@ function getAllMovie (value, type) {
 }
 
 function createActionCarousel (listOfAllMovies, type) {
-    function createCarouselList (listOfAllMovies, index) {
+    function createCarouselList (selectedMovie, index) {
         let film = document.createElement("div")
-            film.style.backgroundImage = "url(" + listOfAllMovies.image_url + ")"
+        titleMovie = selectedMovie.title
+        // film.setAttribute("onclick", "openModal(" + titleMovie + ")")
+        // film.setAttribute('onclick',function() {
+        //     openModal(titleMovie)
+        // })
+
+            film.style.backgroundImage = "url(" + selectedMovie.image_url + ")"
             film.classList.add("caroussel__slide__movie")
             let filmTitle = document.createElement("h3") 
-            filmTitle.textContent = listOfAllMovies.title
+            filmTitle.textContent = titleMovie
             film.appendChild(filmTitle)
             let parent = document.getElementById("carousel__slide" + index + "_" + type)
             parent.appendChild(film)
+            // film.setAttribute('onclick','openModal()')
+            film.addEventListener("click", function(){
+                openModal(filmTitle.textContent)
+            })
     }
-        for (let i = 0; i <7; i++){
-            if (i < 4) {
-                createCarouselList(listOfAllMovies[i], 0)
-            } else {
-                createCarouselList(listOfAllMovies[i], 1)
-            }
 
+
+    for (let i = 0; i <7; i++){
+        if (i < 4) {
+            createCarouselList(listOfAllMovies[i], 0)
+        } else {
+            createCarouselList(listOfAllMovies[i], 1)
         }
+
+    }
 
     }
 
