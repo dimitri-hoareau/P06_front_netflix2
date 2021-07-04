@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="carousel.css" />
     <link rel="stylesheet" href="styles.scss" />
+    <script src="carousel.js" ></script>
+    <script src="movies.js" ></script>
     <title>NetFlix2</title>
 </head>
 <body>
@@ -37,172 +39,94 @@
             </div>
         </section>
     
-        <section>
+<section id="carousel_best_movies">
             
+    <h1>Films les mieux notés</h1>
 
-<h1>Films les mieux notés</h1>
+    <section  class="carousel" aria-label="Gallery">
+        <div class="button__container">
+            <button onclick="navigatePrevious('_best-movies')">
+                previous
+            </button>
 
-<section class="carousel" aria-label="Gallery">
-    <div class="button__container">
-        <button onclick="navigatePrevious()">
-            previous
+            <button onclick="navigateNext('_best-movies')">
+            next
         </button>
+        </div>
+    <ol class="carousel__viewport">
 
-        <button onclick="navigateNext()">
-          next
-      </button>
-    </div>
-  <ol class="carousel__viewport">
-
-    <li id="carousel__slide0"
-        tabindex="0"
-        class="carousel__slide"
-        data-active="active">
-    </li>
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-    </li>
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li id="carousel__navigation-item_0" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0)">
-        <a href="#carousel__slide0"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li id="carousel__navigation-item_1" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1)">
-        <a href="#carousel__slide1"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
+        <li id="carousel__slide0_best-movies"
+            tabindex="0"
+            class="carousel__slide"
+            data-active="active">
+        </li>
+        <li id="carousel__slide1_best-movies"
+            tabindex="0"
+            class="carousel__slide">
+        </li>
     </ol>
-  </aside>
+    <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+        <li id="carousel__navigation-item_0_best-movies" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0, '_best-movies')">
+            <a href="#carousel__slide0_best-movies"
+            class="carousel__navigation-button">Go to slide 1</a>
+        </li>
+        <li id="carousel__navigation-item_1_best-movies" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1, '_best-movies')">
+            <a href="#carousel__slide1_best-movies"
+            class="carousel__navigation-button">Go to slide 2</a>
+        </li>
+        </ol>
+    </aside>
+    </section>
+
+    
 </section>
-        </section>
+
+<section id="carousel_Action">
+            
+    <h1>Action</h1>
+
+    <section class="carousel" aria-label="Gallery">
+        <div class="button__container">
+            <button onclick="navigatePrevious('Action')">
+                previous
+            </button>
+
+            <button onclick="navigateNext('Action')">
+            next
+        </button>
+        </div>
+    <ol class="carousel__viewport">
+
+        <li id="carousel__slide0_Action"
+            tabindex="0"
+            class="carousel__slide"
+            data-active="active">
+        </li>
+        <li id="carousel__slide1_Action"
+            tabindex="0"
+            class="carousel__slide">
+        </li>
+    </ol>
+    <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+        <li id="carousel__navigation-item_0_Action" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0,'_Action')">
+            <a href="#carousel__slide0_Action"
+            class="carousel__navigation-button">Go to slide 1</a>
+        </li>
+        <li id="carousel__navigation-item_1_Action" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1, '_Action')">
+            <a href="#carousel__slide1_Action"
+            class="carousel__navigation-button">Go to slide 2</a>
+        </li>
+        </ol>
+    </aside>
+    </section>
+
+    
+</section>
 
 
-
-<script>
-    function navigate(id, index) {
-        let listElement = document.getElementsByClassName('carousel__navigation-item')
-        for (let i = 0; i < listElement.length; i++) {
-            if (listElement[i].getAttribute("data-active") === "active") {
-                if (listElement[i].getAttribute("id") === id) {
-                    break;
-                } else {
-                    listElement[i].removeAttribute("data-active")
-                    document.getElementById(id).setAttribute("data-active", "active")
-                    for (let i = 0; i < document.getElementsByClassName('carousel__slide').length; i++) {
-                        if (document.getElementsByClassName('carousel__slide')[i].getAttribute("data-active") === "active") {
-                            document.getElementsByClassName('carousel__slide')[i].removeAttribute("data-active")
-                        }
-                    }
-                    document.getElementById('carousel__slide' + index).setAttribute("data-active", "active")
-                    window.location.href='#carousel__slide' + index
-                    break;
-                }
-
-            }
-        }
-    }
-
-
-
-    function navigateNext() {
-        let listElement = document.getElementsByClassName('carousel__slide')
-
-
-        for (let i = 0; i < listElement.length; i++) {
-            if (listElement[i].getAttribute("data-active") === "active") {
-                listElement[i + 1].setAttribute("data-active", "active")
-                listElement[i].removeAttribute("data-active")
-                document.getElementById('carousel__navigation-item_' + i).removeAttribute("data-active")
-                document.getElementById('carousel__navigation-item_' + (i + 1)).setAttribute("data-active", "active")
-                window.location.href='#carousel__slide' + (i + 1)
-
-                break;
-            }
-        }
-    }
-
-    function navigatePrevious() {
-        let listElement = document.getElementsByClassName('carousel__slide')
-        for (let i = 0; i < listElement.length; i++) {
-            if (listElement[i].getAttribute("data-active") === "active") {
-                listElement[i - 1].setAttribute("data-active", "active")
-                listElement[i].removeAttribute("data-active")
-                document.getElementById('carousel__navigation-item_' + i).removeAttribute("data-active")
-                document.getElementById('carousel__navigation-item_' + (i - 1)).setAttribute("data-active", "active")
-                window.location.href='#carousel__slide' + (i - 1)
-                
-                break;
-            }
-        } 
-    }
-</script>
-
-<script>
-
-let actionValues = []
-
-function getAllMovie (value) {
-    actionValues.push(value)
-    if (actionValues.length === 2) {
-        let listOfAllMovies = actionValues[0].results.concat(actionValues[1].results)
-        listOfAllMovies.splice(6,3)
-        createActionCarousel(listOfAllMovies)
-    }
-}
-
-function createActionCarousel (listOfAllMovies) {
-
-    function createCarouselList (listOfAllMovies, index) {
-        let film = document.createElement("div")
-            film.style.backgroundImage = "url(" + listOfAllMovies.image_url + ")"
-            film.classList.add("caroussel__slide__movie")
-            let filmTitle = document.createElement("h3") 
-            filmTitle.textContent = listOfAllMovies.title
-            film.appendChild(filmTitle)
-            let parent = document.getElementById("carousel__slide" + index)
-            parent.appendChild(film)
-    }
-        for (let i = 0; i <7; i++){
-            if (i < 4) {
-                createCarouselList(listOfAllMovies[i], 0)
-            } else {
-                createCarouselList(listOfAllMovies[i], 1)
-            }
-
-        }
-
-    }
-
-
-
-function fetchMultiplePages () {
-
-    for (let i=1; i <3; i++) {
-        fetch("http://localhost:8000/api/v1/titles/?genre=Action&page=" + i + "&sort_by=+-imdb_score")
-    .then(function(res) {
-        if (res.ok) {
-        return res.json();
-        }
-    })
-    .then(function(value) {
-        getAllMovie(value)
-
-    })
-
-    .catch(function(err) {
-    console.log(err)
-    });
-    }
-
-}
-
-
-fetchMultiplePages()
-
-
-</script>
-
- <!-- vérifier ordre !!! -->
+ <!-- vérifier ordre un peu random parfois !!! console.log du tableau final des films -->
+ <!-- vire le counter increment -->
+ <!-- corriger bouton previous next carousel bas -->
+ <!-- type mot autorisé js ? -->
