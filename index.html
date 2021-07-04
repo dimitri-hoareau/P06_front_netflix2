@@ -57,21 +57,21 @@
 
         <li id="carousel__slide0_best-movies"
             tabindex="0"
-            class="carousel__slide"
+            class="carousel__slide carousel__slide_best-movies"
             data-active="active">
         </li>
         <li id="carousel__slide1_best-movies"
             tabindex="0"
-            class="carousel__slide">
+            class="carousel__slide carousel__slide_best-movies">
         </li>
     </ol>
     <aside class="carousel__navigation">
         <ol class="carousel__navigation-list">
-        <li id="carousel__navigation-item_0_best-movies" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0, '_best-movies')">
+        <li id="carousel__navigation-item_0_best-movies" class="carousel__navigation-item carousel__navigation-item_best-movies" data-active="active" onclick="navigate('carousel__navigation-item_0', 0, '_best-movies')">
             <a href="#carousel__slide0_best-movies"
             class="carousel__navigation-button">Go to slide 1</a>
         </li>
-        <li id="carousel__navigation-item_1_best-movies" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1, '_best-movies')">
+        <li id="carousel__navigation-item_1_best-movies" class="carousel__navigation-item carousel__navigation-item_best-movies" onclick="navigate('carousel__navigation-item_1', 1, '_best-movies')">
             <a href="#carousel__slide1_best-movies"
             class="carousel__navigation-button">Go to slide 2</a>
         </li>
@@ -88,11 +88,11 @@
 
     <section class="carousel" aria-label="Gallery">
         <div class="button__container">
-            <button onclick="navigatePrevious('Action')">
+            <button onclick="navigatePrevious('_Action')">
                 previous
             </button>
 
-            <button onclick="navigateNext('Action')">
+            <button onclick="navigateNext('_Action')">
             next
         </button>
         </div>
@@ -100,21 +100,21 @@
 
         <li id="carousel__slide0_Action"
             tabindex="0"
-            class="carousel__slide"
+            class="carousel__slide carousel__slide_Action"
             data-active="active">
         </li>
         <li id="carousel__slide1_Action"
             tabindex="0"
-            class="carousel__slide">
+            class="carousel__slide carousel__slide_Action">
         </li>
     </ol>
     <aside class="carousel__navigation">
         <ol class="carousel__navigation-list">
-        <li id="carousel__navigation-item_0_Action" class="carousel__navigation-item" data-active="active" onclick="navigate('carousel__navigation-item_0', 0,'_Action')">
+        <li id="carousel__navigation-item_0_Action" class="carousel__navigation-item carousel__navigation-item_Action" data-active="active" onclick="navigate('carousel__navigation-item_0', 0,'_Action')">
             <a href="#carousel__slide0_Action"
             class="carousel__navigation-button">Go to slide 1</a>
         </li>
-        <li id="carousel__navigation-item_1_Action" class="carousel__navigation-item" onclick="navigate('carousel__navigation-item_1', 1, '_Action')">
+        <li id="carousel__navigation-item_1_Action" class="carousel__navigation-item carousel__navigation-item_Action" onclick="navigate('carousel__navigation-item_1', 1, '_Action')">
             <a href="#carousel__slide1_Action"
             class="carousel__navigation-button">Go to slide 2</a>
         </li>
@@ -128,5 +128,5 @@
 
  <!-- vérifier ordre un peu random parfois !!! console.log du tableau final des films -->
  <!-- vire le counter increment -->
- <!-- corriger bouton previous next carousel bas -->
+ <!-- corriger bouton previous previous quand il n'y a rien avant -->
  <!-- type mot autorisé js ? -->
