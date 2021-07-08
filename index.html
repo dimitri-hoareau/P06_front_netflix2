@@ -143,7 +143,8 @@
 //create modal content
 function buildModal (movieTitle) {
     console.log(movieTitle)
-    fetch("http://localhost:8000/api/v1/titles/?title=Miss+Jerry")
+    regexMovieTitle = movieTitle.replace(/\s/g, "+");
+    fetch("http://localhost:8000/api/v1/titles/?title=" + regexMovieTitle)
 
 
     .then(function(res) {
@@ -153,7 +154,9 @@ function buildModal (movieTitle) {
         }
     })
     .then(function(value) {
+        console.log(value.results[0])
         // console.log(value)
+        generateModal(value.results[0])
 
     })
 
@@ -164,51 +167,96 @@ function buildModal (movieTitle) {
 
 
 
+function generateModal(movieData) {
+    let modal = document.createElement("div")
+    modal.id = "myModal"
+    modal.classList.add("modal")
+    document.querySelector('body').appendChild(modal);
 
+    let modalContent = document.createElement("div")
+    modalContent.classList.add("modal-content")
+    modal.appendChild(modalContent)
+
+    let span = document.createElement("span")
+    span.classList.add("close")
+    span.textContent = "x"
+    modalContent.appendChild(span)
+
+    function createModalTextElements(title, data){
+        let container = document.createElement("div")
+        let elementTitle = document.createElement("p")
+        elementTitle.textContent = title
+        let element = document.createElement("p")
+        element.textContent = data
+        container.appendChild(elementTitle)
+        container.appendChild(element)
+        modalContent.appendChild(container)
+    }
+    // display the object with key / value ?
+    createModalTextElements("titre : ", movieData.title)
+    createModalTextElements("Année : ", movieData.year)
+    createModalTextElements("votes : ", movieData.votes)
+    createModalTextElements("score IMDB : ", movieData.imdb_score)
+
+    // let title = document.createElement("p")
+    // title.textContent = movieData.title
+    // modalContent.appendChild(title)
+
+    modal.style.display = "block";
+
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    } 
+}
 //create the modal 
-let modal = document.createElement("div")
-modal.id = "myModal"
-modal.classList.add("modal")
-document.querySelector('body').appendChild(modal);
+// let modal = document.createElement("div")
+// modal.id = "myModal"
+// modal.classList.add("modal")
+// document.querySelector('body').appendChild(modal);
 
-let modalContent = document.createElement("div")
-modalContent.classList.add("modal-content")
-modal.appendChild(modalContent)
+// let modalContent = document.createElement("div")
+// modalContent.classList.add("modal-content")
+// modal.appendChild(modalContent)
 
-let span = document.createElement("span")
-span.classList.add("close")
-span.textContent = "x"
-modalContent.appendChild(span)
+// let span = document.createElement("span")
+// span.classList.add("close")
+// span.textContent = "x"
+// modalContent.appendChild(span)
 
-let title = document.createElement("p")
-title.textContent = "Some text in modal !"
-modalContent.appendChild(title)
+// let title = document.createElement("p")
+// title.textContent = "Some text in modal !"
+// modalContent.appendChild(title)
 
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// var btn = document.getElementById("myBtn");
 
 // When the user clicks on the button, open the modal
 // function openModal (filmTitle) {
 //     console.log(filmTitle)
 function openModal (movieTitle) {
-
-
     buildModal(movieTitle)
-modal.style.display = "block";
+    // modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-modal.style.display = "none";
-}
+// span.onclick = function() {
+// modal.style.display = "none";
+// }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-if (event.target == modal) {
-modal.style.display = "none";
-}
-} 
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//     modal.style.display = "none";
+//     }
+// } 
 
 
 
