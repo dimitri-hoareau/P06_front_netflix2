@@ -30,7 +30,8 @@ function createActionCarousel (listOfAllMovies, type) {
             parent.appendChild(film)
             // film.setAttribute('onclick','openModal()')
             film.addEventListener("click", function(){
-                openModal(filmTitle.textContent)
+                openModal(filmTitle.textContent, selectedMovie.id)
+                // console.log(selectedMovie.id)
             })
     }
 
@@ -60,6 +61,7 @@ function fetchMultiplePages (type) {
         }
         fetch(url)
 
+        //recuperer id des films ici 
 
     .then(function(res) {
         if (res.ok) {

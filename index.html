@@ -135,16 +135,17 @@
  <!-- vérifier ordre un peu random parfois !!! console.log du tableau final des films -->
  <!-- vire le counter increment -->
  <!-- corriger bouton previous previous quand il n'y a rien avant -->
- <!-- type mot autorisé js ? -->
- <!-- fichier js externe modal ?? -->
- <!-- regex pour le fetch de la modal -->
+ <!-- type mot autorisé js ? + modal date published format if = date_published, modification -->
+ <!-- fichier js externe modal ??    ordre d'importation faire attention-->
+
 
 <script>
 //create modal content
-function buildModal (movieTitle) {
-    console.log(movieTitle)
-    regexMovieTitle = movieTitle.replace(/\s/g, "+");
-    fetch("http://localhost:8000/api/v1/titles/?title=" + regexMovieTitle)
+function buildModal (movieTitle, movieId) {
+    // console.log(movieId)
+    // regexMovieTitle = movieTitle.replace(/\s/g, "+");
+    // fetch("http://localhost:8000/api/v1/titles/?title=" + regexMovieTitle)
+    fetch("http://localhost:8000/api/v1/titles/" + movieId)
 
 
     .then(function(res) {
@@ -154,9 +155,11 @@ function buildModal (movieTitle) {
         }
     })
     .then(function(value) {
-        console.log(value.results[0])
+        console.log(value)
+        // console.log(value.results[0])
         // console.log(value)
-        generateModal(value.results[0])
+        // generateModal(value.results[0])
+        generateModal(value)
 
     })
 
@@ -182,25 +185,58 @@ function generateModal(movieData) {
     span.textContent = "x"
     modalContent.appendChild(span)
 
+    function getMovieImage (data) {
+        let image = document.createElement("img")
+        image.src = data
+        modalContent.appendChild(image)
+    }
+
+
     function createModalTextElements(title, data){
+        typeOfData = typeof(data)
         let container = document.createElement("div")
+        container.className = "modal-content__container--" + typeOfData
         let elementTitle = document.createElement("p")
         elementTitle.textContent = title
-        let element = document.createElement("p")
-        element.textContent = data
+        elementTitle.className = "modal-content__container__title"
+        let element
+        if (typeOfData === "string") {
+            element = document.createElement("p")
+            element.textContent = data
+        } else {
+            element = document.createElement("ul")
+            if (data === null) {
+            }else {
+
+                for (i=0;i<data.length;i++) {
+      
+
+                    let elementList = document.createElement("li")
+                    elementList.textContent = data[i]
+                    element.appendChild(elementList)
+                }
+            }
+    }
         container.appendChild(elementTitle)
         container.appendChild(element)
         modalContent.appendChild(container)
     }
-    // display the object with key / value ?
+
+
+    getMovieImage(movieData.image_url)
     createModalTextElements("titre : ", movieData.title)
-    createModalTextElements("Année : ", movieData.year)
+    createModalTextElements("genres : ", movieData.genres)
+    createModalTextElements("Année : ", movieData.date_published)
     createModalTextElements("votes : ", movieData.votes)
     createModalTextElements("score IMDB : ", movieData.imdb_score)
+    createModalTextElements("réalisateurs : ", movieData.directors)
+    createModalTextElements("acteurs : ", movieData.actors)
+    createModalTextElements("durée : ", movieData.duration)
+    createModalTextElements("pays : ", movieData.countries)
+    createModalTextElements("résultat au box-office : ", movieData.worldwide_gross_income)
+    createModalTextElements("résumé : ", movieData.long_description)
 
-    // let title = document.createElement("p")
-    // title.textContent = movieData.title
-    // modalContent.appendChild(title)
+
 
     modal.style.display = "block";
 
@@ -215,49 +251,16 @@ function generateModal(movieData) {
         }
     } 
 }
-//create the modal 
-// let modal = document.createElement("div")
-// modal.id = "myModal"
-// modal.classList.add("modal")
-// document.querySelector('body').appendChild(modal);
 
-// let modalContent = document.createElement("div")
-// modalContent.classList.add("modal-content")
-// modal.appendChild(modalContent)
-
-// let span = document.createElement("span")
-// span.classList.add("close")
-// span.textContent = "x"
-// modalContent.appendChild(span)
-
-// let title = document.createElement("p")
-// title.textContent = "Some text in modal !"
-// modalContent.appendChild(title)
-
-
-// Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// When the user clicks on the button, open the modal
-// function openModal (filmTitle) {
-//     console.log(filmTitle)
-function openModal (movieTitle) {
-    buildModal(movieTitle)
+function openModal (movieTitle, movieId) {
+    buildModal(movieTitle, movieId)
     // modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-// modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//     modal.style.display = "none";
-//     }
-// } 
 
 
 
 </script>
+
+
+<!--  durée ? pays d'origine ? resultat boxoffice ? resume ? -->

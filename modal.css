@@ -35,3 +35,11 @@
     text-decoration: none;
     cursor: pointer;
   } 
+
+  .modal-content__container--string {
+    display: flex;
+  }
+
+  .modal-content__container__title{
+    margin-right: 5px;
+  }
