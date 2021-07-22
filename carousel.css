@@ -75,6 +75,10 @@
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
   }
+
+  /* .carousel::-webkit-scrollbar {
+    display: none;
+  } */
   
   .carousel__viewport {
     position: absolute;
@@ -88,20 +92,22 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     height: 400px;
+    scrollbar-color: #fff #fff;
   }
   
   .carousel__slide {
     position: relative;
     flex: 0 0 100%;
     width: 100%;
-    background-color: #f99;
+    background-color: #fff;
     counter-increment: item;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
   }
   
   .carousel__slide:nth-child(even) {
-    background-color: #99f;
+    background-color: #fff;
   }
   
   .carousel__slide:before {
@@ -193,13 +199,43 @@
   .button__container {
     z-index: 10;
     position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    bottom: -200px;
 }
   
 .caroussel__slide__movie {
   width: 182px;
   height: 268px;
+  display: flex;
+align-items: flex-end;
 }
 
 #carousel_Action {
   margin-top: 450px;
+}
+
+#carousel_Thriller {
+  margin-top: 450px;
+}
+
+#carousel_Comedy {
+  margin-top: 450px;
+}
+
+.section__title{
+  text-align: center;
+}
+
+.fas{
+  cursor: pointer;
+}
+
+.film_title_detail{
+  color: #fff;
+  background-color: #00000091;
+width: 100%;
+margin-bottom: 0;
+padding: 5px;
 }

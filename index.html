@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9f3d26e99e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="carousel.css" />
-    <link rel="stylesheet" href="styles.scss" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="modal.css" />
     <script src="carousel.js" ></script>
     <script src="movies.js" ></script>
@@ -14,19 +15,17 @@
 </head>
 
 <body>
-
-
  </div> 
     <header class="banner">
         <div class="banner__title">
-            <h1>JustStreamit</h1>
+            <h1 class="page_title">JustStreamit</h1>
         </div>
         <nav class="banner__nav">
             <ul class="banner__list">
                 <li class="banner__list_element banner__list_element--active">
                     Accueil
                 </li>
-                <li class="banner__nav__list__element">
+                <li class="banner__list_element">
                     Catégories
                 </li>
             </ul>
@@ -47,17 +46,12 @@
     
 <section id="carousel_best_movies">
             
-    <h1>Films les mieux notés</h1>
+    <h2 class="section__title">Films les mieux notés</h2>
 
     <section  class="carousel" aria-label="Gallery">
         <div class="button__container">
-            <button onclick="navigatePrevious('_best-movies')">
-                previous
-            </button>
-
-            <button onclick="navigateNext('_best-movies')">
-            next
-        </button>
+            <i class="fas fa-angle-left fa-2x" onclick="navigatePrevious('_best-movies')"></i>
+            <i class="fas fa-angle-right fa-2x" onclick="navigateNext('_best-movies')"></i>
         </div>
     <ol class="carousel__viewport">
 
@@ -90,17 +84,13 @@
 
 <section id="carousel_Action">
             
-    <h1>Action</h1>
+    <h2 class="section__title">Action</h2>
+
 
     <section class="carousel" aria-label="Gallery">
         <div class="button__container">
-            <button onclick="navigatePrevious('_Action')">
-                previous
-            </button>
-
-            <button onclick="navigateNext('_Action')">
-            next
-        </button>
+            <i class="fas fa-angle-left fa-2x" onclick="navigatePrevious('_Action')"></i>
+            <i class="fas fa-angle-right fa-2x" onclick="navigateNext('_Action')"></i>
         </div>
     <ol class="carousel__viewport">
 
@@ -130,7 +120,81 @@
 
 </section>
 
+<section id="carousel_Thriller">
+            
+    <h2 class="section__title">Thriller</h2>
 
+
+    <section class="carousel" aria-label="Gallery">
+        <div class="button__container">
+            <i class="fas fa-angle-left fa-2x" onclick="navigatePrevious('_Thriller')"></i>
+            <i class="fas fa-angle-right fa-2x" onclick="navigateNext('_Thriller')"></i>
+        </div>
+    <ol class="carousel__viewport">
+
+        <li id="carousel__slide0_Thriller"
+            tabindex="0"
+            class="carousel__slide carousel__slide_Thriller"
+            data-active="active">
+        </li>
+        <li id="carousel__slide1_Thriller"
+            tabindex="0"
+            class="carousel__slide carousel__slide_Thriller">
+        </li>
+    </ol>
+    <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+        <li id="carousel__navigation-item_0_Thriller" class="carousel__navigation-item carousel__navigation-item_Thriller" data-active="active" onclick="navigate('carousel__navigation-item_0', 0,'_Thriller')">
+            <a href="#carousel__slide0_Thriller"
+            class="carousel__navigation-button">Go to slide 1</a>
+        </li>
+        <li id="carousel__navigation-item_1_Thriller" class="carousel__navigation-item carousel__navigation-item_Thriller" onclick="navigate('carousel__navigation-item_1', 1, '_Thriller')">
+            <a href="#carousel__slide1_Thriller"
+            class="carousel__navigation-button">Go to slide 2</a>
+        </li>
+        </ol>
+    </aside>
+    </section>
+
+</section>
+
+<section id="carousel_Comedy">
+            
+    <h2 class="section__title">Comedy</h2>
+
+
+    <section class="carousel" aria-label="Gallery">
+        <div class="button__container">
+            <i class="fas fa-angle-left fa-2x" onclick="navigatePrevious('_Comedy')"></i>
+            <i class="fas fa-angle-right fa-2x" onclick="navigateNext('_Comedy')"></i>
+        </div>
+    <ol class="carousel__viewport">
+
+        <li id="carousel__slide0_Comedy"
+            tabindex="0"
+            class="carousel__slide carousel__slide_Comedy"
+            data-active="active">
+        </li>
+        <li id="carousel__slide1_Comedy"
+            tabindex="0"
+            class="carousel__slide carousel__slide_Comedy">
+        </li>
+    </ol>
+    <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+        <li id="carousel__navigation-item_0_Comedy" class="carousel__navigation-item carousel__navigation-item_Comedy" data-active="active" onclick="navigate('carousel__navigation-item_0', 0,'_Comedy')">
+            <a href="#carousel__slide0_Comedy"
+            class="carousel__navigation-button">Go to slide 1</a>
+        </li>
+        <li id="carousel__navigation-item_1_Comedy" class="carousel__navigation-item carousel__navigation-item_Comedy" onclick="navigate('carousel__navigation-item_1', 1, '_Comedy')">
+            <a href="#carousel__slide1_Comedy"
+            class="carousel__navigation-button">Go to slide 2</a>
+        </li>
+        </ol>
+    </aside>
+    </section>
+
+</section>
 
  <!-- vérifier ordre un peu random parfois !!! console.log du tableau final des films -->
  <!-- vire le counter increment -->

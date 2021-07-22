@@ -3,6 +3,7 @@
 let actionValues = []
 
 function getAllMovie (value, type) {
+    // if type = best movie  , lancer une fonction + le faire sauter le numero 1
     actionValues.push(value)
     if (actionValues.length === 2) {
         let listOfAllMovies = actionValues[0].results.concat(actionValues[1].results)
@@ -23,7 +24,8 @@ function createActionCarousel (listOfAllMovies, type) {
 
             film.style.backgroundImage = "url(" + selectedMovie.image_url + ")"
             film.classList.add("caroussel__slide__movie")
-            let filmTitle = document.createElement("h3") 
+            let filmTitle = document.createElement("h3")
+            filmTitle.classList.add("film_title_detail")
             filmTitle.textContent = titleMovie
             film.appendChild(filmTitle)
             let parent = document.getElementById("carousel__slide" + index + "_" + type)
@@ -83,5 +85,7 @@ function fetchMultiplePages (type) {
 
 fetchMultiplePages("best-movies")
 fetchMultiplePages("Action")
+fetchMultiplePages("Thriller")
+fetchMultiplePages("Comedy")
 
 
