@@ -191,9 +191,13 @@
   }
   
 
+  .carousel__navigation-item a {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
  .carousel__navigation-item[data-active="active"] a {
-    width: 2rem;
-    height: 2rem;
+    width: 1.2rem;
+    height: 1.2rem;
   }
 
   .button__container {
@@ -238,4 +242,11 @@ align-items: flex-end;
 width: 100%;
 margin-bottom: 0;
 padding: 5px;
+}
+
+
+.best_movie__bloc--image {
+  width: 182px;
+  height: 268px;
+
 }

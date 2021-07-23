@@ -1,26 +1,49 @@
 
 
 let actionValues = []
+let bestMovieArray = []
 
 function getAllMovie (value, type) {
-    // if type = best movie  , lancer une fonction + le faire sauter le numero 1
-    actionValues.push(value)
-    if (actionValues.length === 2) {
-        let listOfAllMovies = actionValues[0].results.concat(actionValues[1].results)
-        listOfAllMovies.splice(6,3)
-        createActionCarousel(listOfAllMovies, type)
-        actionValues = []
+
+    if (type === "best-movies") {
+        bestMovieArray.push(value)
+        if (bestMovieArray.length === 2) {
+            let listOfAllMovies = bestMovieArray[0].results.concat(bestMovieArray[1].results)
+            getTheBestMovie(listOfAllMovies[0])
+            listOfAllMovies.shift()
+            listOfAllMovies.splice(6,2)
+            createActionCarousel(listOfAllMovies, type)
+            bestMovieArray = []
+        }
+
+    } else {
+
+        actionValues.push(value)
+        if (actionValues.length === 2) {
+            let listOfAllMovies = actionValues[0].results.concat(actionValues[1].results)
+            listOfAllMovies.splice(6,3)
+            createActionCarousel(listOfAllMovies, type)
+            actionValues = []
+        }
     }
+
 }
+
+function getTheBestMovie (bestMovie) {
+console.log(bestMovie)
+document.getElementById("best_movie__title").textContent = bestMovie.title
+document.getElementById("best_movie__bloc--image").style.backgroundImage = "url(" + bestMovie.image_url + ")"
+document.getElementById("best_movie__button_knowMore").addEventListener("click", function(){
+    openModal(bestMovie.title, bestMovie.id)
+})
+
+}
+
 
 function createActionCarousel (listOfAllMovies, type) {
     function createCarouselList (selectedMovie, index) {
         let film = document.createElement("div")
         titleMovie = selectedMovie.title
-        // film.setAttribute("onclick", "openModal(" + titleMovie + ")")
-        // film.setAttribute('onclick',function() {
-        //     openModal(titleMovie)
-        // })
 
             film.style.backgroundImage = "url(" + selectedMovie.image_url + ")"
             film.classList.add("caroussel__slide__movie")

@@ -34,13 +34,23 @@
     </header>
     <main>
         <section class="best_movie">
-            <div class="best_movie__bloc">
-                <h2 class="best_movie__title">
-                    Titre
-                </h2>
-                <button class="best_movie__button">
-                    Play
-                </button>
+            <div id="best_movie__bloc" class="best_movie__bloc">
+                <div id="best_movie__bloc--child" class="best_movie__bloc--child">
+                    <h2 id="best_movie__title" class="best_movie__title">
+                    </h2>
+                <div id="best_movie__bloc--button" class="best_movie__bloc--button">
+                    <button class="best_movie__button">
+                        Play
+                    </button>
+                    <button id="best_movie__button_knowMore" class="best_movie__button">
+                        plus d'infos
+                    </button>
+                </div>
+            </div>
+            <div id="best_movie__bloc--image" class="best_movie__bloc--image">
+
+            </div>
+
             </div>
         </section>
     
@@ -204,11 +214,8 @@
 
 
 <script>
-//create modal content
+
 function buildModal (movieTitle, movieId) {
-    // console.log(movieId)
-    // regexMovieTitle = movieTitle.replace(/\s/g, "+");
-    // fetch("http://localhost:8000/api/v1/titles/?title=" + regexMovieTitle)
     fetch("http://localhost:8000/api/v1/titles/" + movieId)
 
 
@@ -219,10 +226,6 @@ function buildModal (movieTitle, movieId) {
         }
     })
     .then(function(value) {
-        console.log(value)
-        // console.log(value.results[0])
-        // console.log(value)
-        // generateModal(value.results[0])
         generateModal(value)
 
     })

@@ -28,9 +28,24 @@
 
 
 .best_movie {
-    background-color: brown;
+    background-color: #eaeaea;
 }
 
 .page_title{
     color: #fff;
+}
+
+.best_movie__bloc{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+margin-top: 10px;
+}
+
+.best_movie__bloc--child{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
