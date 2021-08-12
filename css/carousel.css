@@ -214,6 +214,7 @@
   height: 268px;
   display: flex;
 align-items: flex-end;
+cursor: pointer;
 }
 
 #carousel_Action {
