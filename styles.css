@@ -49,3 +49,8 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 }
+
+.modal-content--image{
+    float: right;
+    margin-right: 40px;
+}

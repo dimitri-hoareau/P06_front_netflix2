@@ -29,7 +29,6 @@
 
         for (let i = 0; i < listElement.length; i++) {
             if (listElement[i + 1]) {
-                console.log("here")
                 if (listElement[i].getAttribute("data-active") === "active") {
                     listElement[i].removeAttribute("data-active")
                     listElement[i + 1].setAttribute("data-active", "active")
@@ -39,7 +38,6 @@
                     break;
                 }
             } else {
-                console.log("here2")
                 if (listElement[i].getAttribute("data-active") === "active") {
                     listElement[i].removeAttribute("data-active")
                     listElement[0].setAttribute("data-active", "active")
