@@ -23,7 +23,6 @@ function buildModal (movieTitle, movieId) {
 
 
 function generateModal(movieData) {
-    console.log(movieData)
     let modal = document.createElement("div")
     modal.id = "myModal"
     modal.classList.add("modal")
@@ -85,9 +84,9 @@ function generateModal(movieData) {
     createModalTextElements("score IMDB : ", movieData.imdb_score)
     createModalTextElements("réalisateurs : ", movieData.directors)
     createModalTextElements("acteurs : ", movieData.actors)
-    createModalTextElements("durée : ", movieData.duration + "minutes")
+    createModalTextElements("durée : ", movieData.duration + " minutes")
     createModalTextElements("pays : ", movieData.countries)
-    createModalTextElements("résultat au box-office : ", movieData.worldwide_gross_income)
+    createModalTextElements("résultat au box-office : ", movieData.worldwide_gross_income + " visitors")
     createModalTextElements("résumé : ", movieData.long_description)
 
 

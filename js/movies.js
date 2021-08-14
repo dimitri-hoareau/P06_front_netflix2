@@ -30,7 +30,6 @@ function getAllMovie (value, type) {
 }
 
 function getTheBestMovie (bestMovie) {
-console.log(bestMovie)
 document.getElementById("best_movie__title").textContent = bestMovie.title
 document.getElementById("best_movie__bloc--image").style.backgroundImage = "url(" + bestMovie.image_url + ")"
 document.getElementById("best_movie__button_knowMore").addEventListener("click", function(){
@@ -53,10 +52,8 @@ function createActionCarousel (listOfAllMovies, type) {
             film.appendChild(filmTitle)
             let parent = document.getElementById("carousel__slide" + index + "_" + type)
             parent.appendChild(film)
-            // film.setAttribute('onclick','openModal()')
             film.addEventListener("click", function(){
                 openModal(filmTitle.textContent, selectedMovie.id)
-                // console.log(selectedMovie.id)
             })
     }
 
@@ -85,8 +82,7 @@ function fetchMultiplePages (type) {
             url ="http://localhost:8000/api/v1/titles/?genre=" + type + "&page=" + i + "&sort_by=+-imdb_score"
         }
         fetch(url)
-
-        //recuperer id des films ici 
+ 
 
     .then(function(res) {
         if (res.ok) {

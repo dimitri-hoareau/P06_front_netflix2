@@ -18,7 +18,7 @@
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Could be more or less, depending on screen size */
   }
   
   /* The Close Button */
@@ -38,8 +38,13 @@
 
   .modal-content__container--string {
     display: flex;
+    align-items: center;
   }
 
   .modal-content__container__title{
-    margin-right: 5px;
+    margin-right: 1em;
+    white-space: nowrap;
+    color: #1a1b1c;
+    font-size: 1.4em;
+    font-weight: bold;
   }

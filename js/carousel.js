@@ -1,15 +1,4 @@
 
-
-
-// function navigateNext(e) {
-//     e = e || window.event;
-//     console.log(window.event)
-//     var target = e.target || e.srcElement;
-//     console.log(target);
-// }
-
-
-
     function navigateNext(type) {
         var x = window.pageXOffset
         var y = window.pageYOffset;
